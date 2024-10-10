@@ -10,6 +10,7 @@ const josefin = Josefin_Sans({
 
 import "@/app/_styles/globals.css";
 import Header from "./_components/Header";
+import { ReservationProvider } from "./_components/ReservationContext";
 
 export const metadata = {
   title: {
@@ -17,22 +18,23 @@ export const metadata = {
     default: "Welcome / The Wild Oasis",
   },
   description:
-    "Luxuxrious cabin hotel, located in the heart of the Italian Dolomites, surrounded by beautifull mountains and forests",
+    "Luxurious cabin hotel, located in the heart of the Italian Dolomites, surrounded by beautiful mountains and dark forests",
 };
 
-function RootLayout({ children }) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${josefin.className} relative flex min-h-screen flex-col bg-primary-950 text-primary-100 antialiased`}
+        className={`${josefin.className} antialiased bg-primary-950 text-primary-100 min-h-screen flex flex-col relative`}
       >
         <Header />
-        <div className="grid flex-1 px-8 py-12">
-          <main className="mx-auto w-full max-w-7xl">{children}</main>
+
+        <div className="flex-1 px-8 py-12 grid">
+          <main className="max-w-7xl mx-auto w-full">
+            <ReservationProvider>{children}</ReservationProvider>
+          </main>
         </div>
       </body>
     </html>
   );
 }
-
-export default RootLayout;
